@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer & Job Readiness Platform</title>
+
+    <meta
+        name="description"
+        content="Analyze your resume against a job description, identify skill gaps, and get personalized career recommendations."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <header>
+
+            <div class="brand-badge">
+                🤖 AI-Powered Career Analysis
+            </div>
+
+            <h1>
+                AI Resume Analyzer
+                <span>&amp; Job Readiness Platform</span>
+            </h1>
+
+            <p>
+                Analyze your resume against a job description, discover
+                skill gaps, and get personalized recommendations to improve
+                your job readiness.
+            </p>
+
+        </header>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main>
+
+            <!-- Resume Upload -->
+
+            <section class="card">
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+                        📄
+                    </div>
+
+                    <div>
+                        <h2>Upload Your Resume</h2>
+
+                        <p>
+                            Upload your latest resume in PDF format.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <label for="resume">
+                    Resume PDF
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    accept=".pdf,application/pdf"
+                >
+
+                <p id="file-name">
+                    No file selected
+                </p>
+
+            </section>
+
+
+            <!-- Job Description -->
+
+            <section class="card">
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+                        🧾
+                    </div>
+
+                    <div>
+                        <h2>Job Description</h2>
+
+                        <p>
+                            Paste the job description you want to analyze.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <label for="job-description">
+                    Job Description
+                </label>
+
+                <textarea
+                    id="job-description"
+                    placeholder="Paste the complete job description here..."
+                    maxlength="15000"
+                ></textarea>
+
+                <div class="input-footer">
+
+                    <span>
+                        Include the complete job description for better analysis.
+                    </span>
+
+                    <span id="character-count">
+                        0 / 15000
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- Analyze Button -->
+
+            <button
+                id="analyze-btn"
+                type="button"
+            >
+                🔍 Analyze Resume
+            </button>
+
+
+            <!-- ================= LOADING ================= -->
+
+            <div
+                id="loading"
+                class="hidden"
+            >
+
+                <div class="loader"></div>
+
+                <p>
+                    Analyzing your resume...
+                </p>
+
+                <span>
+                    Extracting skills and comparing your profile with the job requirements.
+                </span>
+
+            </div>
+
+
+            <!-- ================= RESULTS ================= -->
+
+            <section
+                id="results"
+                class="results hidden"
+            >
+
+                <div class="results-header">
+
+                    <div>
+
+                        <span class="results-label">
+                            ANALYSIS COMPLETE
+                        </span>
+
+                        <h2>
+                            📊 Resume Analysis Results
+                        </h2>
+
+                    </div>
+
+                    <div class="analysis-status">
+                        ✓ Analysis Ready
+                    </div>
+
+                </div>
+
+
+                <!-- ================= SCORE ================= -->
+
+                <div class="score-grid">
+
+                    <div class="score-card">
+
+                        <p>
+                            Resume Match Score
+                        </p>
+
+                        <div id="score">
+                            0%
+                        </div>
+
+                        <span id="score-label">
+                            Overall compatibility
+                        </span>
+
+                    </div>
+
+
+                    <div class="readiness-card">
+
+                        <p>
+                            Job Readiness
+                        </p>
+
+                        <div id="readiness-score">
+                            0%
+                        </div>
+
+                        <span id="readiness-label">
+                            Skills alignment
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= SKILL SUMMARY ================= -->
+
+                <div class="skill-summary">
+
+                    <div class="summary-card matched-summary">
+
+                        <span class="summary-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <span class="summary-title">
+                                Matched Skills
+                            </span>
+
+                            <strong id="matched-count">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card missing-summary">
+
+                        <span class="summary-icon">
+                            !
+                        </span>
+
+                        <div>
+
+                            <span class="summary-title">
+                                Missing Skills
+                            </span>
+
+                            <strong id="missing-count">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card improve-summary">
+
+                        <span class="summary-icon">
+                            ↑
+                        </span>
+
+                        <div>
+
+                            <span class="summary-title">
+                                Skills to Improve
+                            </span>
+
+                            <strong id="improve-count">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= MATCHED SKILLS ================= -->
+
+                <div class="skills-section">
+
+                    <div class="skills-section-header">
+
+                        <div>
+
+                            <h3>
+                                ✅ Matched Skills
+                            </h3>
+
+                            <p>
+                                Skills found in both your resume and the job description.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="matched-skills"
+                        class="skill-tags matched-tags"
+                    >
+                        <span class="empty-state">
+                            Skills will appear here after analysis.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= MISSING SKILLS ================= -->
+
+                <div class="skills-section">
+
+                    <div class="skills-section-header">
+
+                        <div>
+
+                            <h3>
+                                ❌ Missing Skills
+                            </h3>
+
+                            <p>
+                                Important skills required by the job but not detected in your resume.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="missing-skills"
+                        class="skill-tags missing-tags"
+                    >
+                        <span class="empty-state">
+                            Skills will appear here after analysis.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= SKILLS TO IMPROVE ================= -->
+
+                <div class="skills-section">
+
+                    <div class="skills-section-header">
+
+                        <div>
+
+                            <h3>
+                                ⚠️ Skills to Improve
+                            </h3>
+
+                            <p>
+                                Areas that could strengthen your profile for this role.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="skills-to-improve"
+                        class="skill-tags improve-tags"
+                    >
+                        <span class="empty-state">
+                            Recommendations will appear here after analysis.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= FEEDBACK ================= -->
+
+                <div class="feedback">
+
+                    <div class="feedback-icon">
+                        💡
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Personalized Feedback
+                        </h3>
+
+                        <p id="feedback-text">
+                            Your personalized analysis will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= LEARNING RECOMMENDATIONS ================= -->
+
+                <div class="recommendations">
+
+                    <div class="recommendations-header">
+
+                        <div class="recommendations-icon">
+                            🎯
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Recommended Learning
+                            </h3>
+
+                            <p>
+                                Focus on these areas to improve your readiness for this role.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="recommendation-list"
+                        class="recommendation-list"
+                    >
+
+                        <div class="recommendation-item">
+
+                            <span class="recommendation-number">
+                                1
+                            </span>
+
+                            <p>
+                                Recommendations will appear after analysis.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= GENERAL SUGGESTIONS ================= -->
+
+                <div class="suggestions">
+
+                    <h3>
+                        🚀 Resume Improvement Suggestions
+                    </h3>
+
+                    <ul id="suggestion-list">
+
+                        <li>
+                            Add relevant keywords from the job description.
+                        </li>
+
+                        <li>
+                            Highlight skills that directly match the role.
+                        </li>
+
+                        <li>
+                            Use strong action verbs to describe your achievements.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div class="footer-brand">
+                🤖 AI Resume Analyzer &amp; Job Readiness Platform
+            </div>
+
+            <p>
+                Built with Python, NLP &amp; Machine Learning
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
