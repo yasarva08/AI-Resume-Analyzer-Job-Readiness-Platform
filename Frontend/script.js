@@ -8,7 +8,7 @@ FRONTEND LOGIC
 CONFIGURATION
    ========================================================= */
 
-const API_URL = "http://127.0.0.1:8000/analyze";
+const API_URL = "https://ai-resume-analyzer-api-mbmr.onrender.com/analyze";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const MIN_JD_LENGTH = 50;
