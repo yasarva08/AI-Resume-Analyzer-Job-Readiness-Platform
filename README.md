@@ -1,6 +1,6 @@
 # 🤖 AI Resume Analyzer & Job Readiness Platform
 
-An AI-powered full-stack application that analyzes a candidate's resume against a given job description and provides actionable insights for improving job readiness.
+An AI-powered full-stack application that analyzes a candidate's resume against a given job description and provides actionable insights to improve job readiness.
 
 ## 🚀 Live Demo
 
@@ -10,9 +10,9 @@ An AI-powered full-stack application that analyzes a candidate's resume against 
 
 ## 📌 Overview
 
-The **AI Resume Analyzer & Job Readiness Platform** helps candidates understand how well their resume matches a specific job description.
+The **AI Resume Analyzer & Job Readiness Platform** helps students, freshers, and job seekers understand how well their resume matches a specific job description.
 
-The platform analyzes the uploaded resume and job description to generate:
+The platform analyzes an uploaded resume and the target job description to generate:
 
 * Resume Match Score
 * Job Readiness Score
@@ -30,17 +30,19 @@ The platform analyzes the uploaded resume and job description to generate:
 * Upload resume in PDF format
 * Extract resume text automatically
 * Analyze resume content against a target job description
+* Validate resume file type and size
 
 ### 🎯 Job Matching
 
 * Calculates a skill-based resume match score
 * Identifies skills present in both resume and job description
 * Identifies missing job-relevant skills
+* Supports normalized and case-insensitive skill matching
 
 ### 📊 Job Readiness
 
 * Generates a job readiness score based on resume-job compatibility
-* Highlights areas that require improvement
+* Highlights important areas that require improvement
 
 ### 🧠 Personalized Recommendations
 
@@ -76,11 +78,10 @@ It also avoids common false matches such as **Java vs JavaScript**.
 ### Machine Learning / NLP
 
 * Scikit-learn
-* TF-IDF
-* Cosine Similarity
 * Skill-based matching
+* NLP-based text processing
 
-### Deployment
+### Deployment & Version Control
 
 * Render
 * GitHub
@@ -99,9 +100,8 @@ AI-Resume-Analyzer-Job-Readiness-Platform/
 │   └── script.js
 │
 ├── .gitignore
-├── requirements.txt
-├── app.py
-└── main.py
+├── README.md
+└── requirements.txt
 ```
 
 ## ⚙️ Run Locally
@@ -175,7 +175,7 @@ The application provides a complete analysis dashboard containing:
 | Learning Recommendations | Suggested areas to learn                         |
 | Resume Suggestions       | Suggestions to strengthen the resume             |
 
-## 🎯 Use Case
+## 🎯 Use Cases
 
 This platform is designed for students, freshers, and job seekers who want to:
 
@@ -184,7 +184,14 @@ This platform is designed for students, freshers, and job seekers who want to:
 * Understand job requirements
 * Improve their resume
 * Create a focused learning plan
-* Increase their preparation for technical roles
+* Prepare more effectively for technical roles
+
+## 🔐 Input & Validation
+
+* Accepts PDF resumes
+* Resume file size is limited for efficient processing
+* Job descriptions have input length validation
+* Skill matching is normalized to reduce duplicate or inconsistent skill detection
 
 ## 👨‍💻 Author
 
