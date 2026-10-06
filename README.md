@@ -4,8 +4,8 @@ An AI-powered full-stack application that analyzes a candidate's resume against 
 
 ## 🚀 Live Demo
 
-**Frontend:** https://ai-resume-analyzer-job-readiness-platform.onrender.com/**Backend API:**
-https://ai-resume-analyzer-api-mbmr.onrender.com
+**Frontend:** https://ai-resume-analyzer-job-readiness-platform.onrender.com/
+**Backend API:** https://ai-resume-analyzer-api-mbmr.onrender.com
 
 ## 📌 Overview
 
